@@ -71,7 +71,7 @@ export class MyPhotos extends React.Component{
 
     initData(){
         let favoryteItems = JSON.parse(localStorage.getItem('favourite_photos'));
-        console.log(favoryteItems);
+        //console.log(favoryteItems);
         this.state = {
             images: favoryteItems
         }   

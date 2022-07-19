@@ -21,6 +21,7 @@ export default function Image (image){
             <img
                 src={`${image.urls.thumb}?w=333&fit=crop&auto=format`}
                 srcSet={`${image.urls.thumb}?w=333&fit=crop&auto=format&dpr=2 2x`}
+                //deveria retornar el resto de datos??
                 loading="lazy"
             />
         <ImageListItemBar

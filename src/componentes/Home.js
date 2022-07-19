@@ -9,7 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Image from './Image'
 import { ImageList } from "@mui/material";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 
 const clientId = 'ZV3icJSp1F9um_6W0NhYACZFvPb-D79UwMLn97-TItU';
 const endpoint = 'https://api.unsplash.com/search/photos';
@@ -102,7 +102,7 @@ export class Home extends React.Component{
                 <Toolbar>
                   <nav>
 
-                    My photos
+                    <Link to='/my-photos'>My photos</Link>
                     
                   </nav>
                   <Typography

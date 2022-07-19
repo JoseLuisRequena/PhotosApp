@@ -5,46 +5,47 @@ export function getPhotos() {
     return fromStorage ? JSON.parse(fromStorage) : [];
 }
 
-
-
-
-
 export const reducer = (action) => {
 
     switch (action.type){
         case 'addToFavorite':{
-           // let arrayPhoto = getPhotos()
-           // const savePhoto = (photo) => {
-           //     return 
-           //     {localStorage.setItem("favourite_photos", JSON.stringify(photo)); 
-           //     console.log(JSON.parse(localStorage.getItem('favourite_photos')))}
-           // }
-           const data = {
-               id: action.payload.id,
-               thumb: action.payload.urls.thumb
-           }
-           let newItems = [] ;
-           let currentItem = localStorage.getItem('favourite_photos');
-           console.log(currentItem)
-           if ( currentItem ){
-                newItems = JSON.parse(currentItem)
-                newItems.push(data)
-            } else {
-                newItems = [data]
+            const f = new Date();
+            const data = {
+                id: action.payload.id,
+                thumb: action.payload.urls.thumb,
+                date: f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear(),
+                likes: action.payload.likes,
+                description: action.payload.description || "undefined",
+                width: action.payload.width,
+                height: action.payload.height,
+                urlsFull: action.payload.urls.full
             }
+ 
+            let currentItem = JSON.parse(localStorage.getItem('favourite_photos'));
+            
+            if (!action.payload.id == currentItem.filter( state => state.id == action.payload.id && currentItem)){
+                currentItem.push(data);
+            } else { currentItem = [data] }
 
-            localStorage.setItem('favourite_photos', JSON.stringify(newItems))
-            console.log(JSON.parse(localStorage.getItem('favourite_photos')))
-
+            console.log(currentItem) // = console.log(JSON.parse(localStorage.getItem('favourite_photos')))
+            localStorage.setItem('favourite_photos', JSON.stringify(currentItem))
+            
+            break;
         }
-             case 'removeFavorite':{
-                let currentItem = JSON.parse(localStorage.getItem('favourite_photos'))
-                let newItems = currentItem.filter( item => item.id !== action.id )
-                localStorage.setItem('favourite_photos', newItems)
 
-             }
+        case 'removeFavorite':{
+           let currentItem = JSON.parse(localStorage.getItem('favourite_photos'));
+           currentItem = currentItem.filter( state => state.id !== action.payload.id );
+           localStorage.setItem('favourite_photos', JSON.stringify(currentItem));
+           console.log(('favourite_photos', JSON.stringify(currentItem)));
+           break;
         }
+        
+        //case 'editFavorite';{
+        //    
+        //}
     }
+}
     
 
 const addToFavorite = {
