@@ -1,37 +1,30 @@
 import { ImageListItem, ImageListItemBar, IconButton } from "@mui/material";
 import DownloadIcon from '@mui/icons-material/Download';
-import React from "react";
-import { reducer, getPhotos } from "./MyPhotosActions";
+import { useState } from "react";
+import { reducer } from "./MyPhotosActions";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import EditIcon from '@mui/icons-material/Edit';
+import NestedModal from './NestedModal'
 const FileSaver = require('file-saver');
 
 
-export default function FavoriteImage (image){
-    //cont [image, setImage] = useState([])
 
-    const onDelete = () => {
-        const action = {
-            type: 'removeFavorite',
-            payload:image
-        }
-        reducer(action)
+export default function FavoriteImage (image){
+    const [open, setOpen] = useState(false)
+    
+   const onDelete = () => {
+       const action = {
+           type: 'removeFavorite',
+           payload:image
+       }
+       reducer(action)
+   }
+    
+    const handleOpen = () => {
+        setOpen(true);
+        console.log(image);
     }
-    const onEdit = () => {
-        const action = {
-            type: 'Edit',
-            payload:image
-        }
-        reducer(action)
-    }
-    const onDownload = () => {
-        const action = {
-            type: 'Download',
-            payload:image
-        }
-        reducer(action)
-    }
- 
+
     return(
         <>
         <ImageListItem key={image.id}>
@@ -43,14 +36,15 @@ export default function FavoriteImage (image){
         <ImageListItemBar
             actionIcon={
                 <>
-                    <IconButton sx={{ color: 'white' }} onClick={() => onEdit()}><EditIcon sx={{fontSize:'xx-large'}} /></IconButton>
+                    <IconButton sx={{ color: 'white' }} onClick={() => handleOpen()}><EditIcon sx={{fontSize:'xx-large'}} /></IconButton>
                     <IconButton sx={{ color: 'red' }} onClick={() => onDelete()}><FavoriteIcon sx={{fontSize:'xx-large'}} /></IconButton>
-                    <IconButton sx={{ color: 'blue' }} onClick={() => FileSaver.saveAs(image.urlsFull, 'arcoiris.png')}><DownloadIcon sx={{fontSize:'xx-large'}} /></IconButton>
+                    <IconButton sx={{ color: 'blue' }} onClick={() => FileSaver.saveAs(image.urlsFull, image.description)}><DownloadIcon sx={{fontSize:'xx-large'}} /></IconButton>
                 </>
             }
         />
         </ImageListItem>   
-
+        <NestedModal open={open} setOpen={setOpen} currentImage={image}/>
         </>
     )
 }
+

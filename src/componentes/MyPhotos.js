@@ -1,19 +1,15 @@
-import React from "react";
+import React, { useState} from "react";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import Image from './Image'
 import { ImageList } from "@mui/material";
-import { Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FavoriteImage from './FavoriteImage'
 
-const clientId = 'ZV3icJSp1F9um_6W0NhYACZFvPb-D79UwMLn97-TItU';
-const endpoint = 'https://api.unsplash.com/search/photos';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -58,42 +54,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-export class MyPhotos extends React.Component{
-    constructor(props){
-        super(props);
-        this.query = '';
-        this.onQueryChange = this.onQueryChange.bind(this);
-        this.search = this.search.bind(this);
-        
-        
-        this.initData()
+export default function MyPhotos() {
+    const [images, setImages]= useState(JSON.parse(localStorage.getItem('favourite_photos')))
+    const [query, setQuery] = useState("")    
+
+    function onQueryChange(e){
+        setQuery = e.target.value;
+        console.log(query)
     }
 
-    initData(){
-        let favoryteItems = JSON.parse(localStorage.getItem('favourite_photos'));
-        //console.log(favoryteItems);
-        this.state = {
-            images: favoryteItems
-        }   
-    }
-    search(){
-
-    }
-
-    onQueryChange(e){
-        this.query = e.target.value;
-        this.search();
-    }
-
-    images(){
-        return this.state.images.map(image =>{
+    function getImages(){
+        return images.map(image =>{
             return FavoriteImage(image)
         })
     }
-    
-
-    
-    render(){
         return(
             <>
             <Box sx={{ flexGrow: 1 }}>
@@ -101,7 +75,7 @@ export class MyPhotos extends React.Component{
                 <Toolbar>
                   <nav>
 
-                    My photos
+                  <Link to='/'>Home</Link>
                     
                   </nav>
                   <Typography
@@ -117,7 +91,8 @@ export class MyPhotos extends React.Component{
                       <SearchIcon />
                     </SearchIconWrapper>
                     <StyledInputBase
-                        onChange={this.onQueryChange}
+                      value={query}
+                      onChange={onQueryChange}
                         
                       placeholder="Search…"
                       inputProps={{ 'aria-label': 'search' }}
@@ -129,10 +104,9 @@ export class MyPhotos extends React.Component{
             
             <Box sx={{ width: '100%', display:'flex'}}>
                 <ImageList variant="masonry" cols={4}>
-                    {this.images()}
+                    {getImages()}
                 </ImageList>
             </Box>
             </>
         )
-    }
 }

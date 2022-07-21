@@ -7,13 +7,15 @@ export function getPhotos() {
 
 export const reducer = (action) => {
 
+    let currentItem = JSON.parse(localStorage.getItem('favourite_photos'));
+
     switch (action.type){
         case 'addToFavorite':{
-            const f = new Date();
+            const date = new Date();
             const data = {
                 id: action.payload.id,
                 thumb: action.payload.urls.thumb,
-                date: f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear(),
+                date: date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear(),
                 likes: action.payload.likes,
                 description: action.payload.description || "undefined",
                 width: action.payload.width,
@@ -21,37 +23,39 @@ export const reducer = (action) => {
                 urlsFull: action.payload.urls.full
             }
  
-            let currentItem = JSON.parse(localStorage.getItem('favourite_photos'));
-            
-            if (!action.payload.id == currentItem.filter( state => state.id == action.payload.id && currentItem)){
+            if (!action.payload.id == currentItem.filter( state => state.id == action.payload.id ) && currentItem){
                 currentItem.push(data);
-            } else { currentItem = [data] }
+            } else if (!currentItem){ currentItem = [data] }
 
             console.log(currentItem) // = console.log(JSON.parse(localStorage.getItem('favourite_photos')))
             localStorage.setItem('favourite_photos', JSON.stringify(currentItem))
-            
             break;
         }
 
         case 'removeFavorite':{
-           let currentItem = JSON.parse(localStorage.getItem('favourite_photos'));
            currentItem = currentItem.filter( state => state.id !== action.payload.id );
            localStorage.setItem('favourite_photos', JSON.stringify(currentItem));
-           console.log(('favourite_photos', JSON.stringify(currentItem)));
            break;
         }
         
-        //case 'editFavorite';{
-        //    
-        //}
+        case 'editToFavorite':{
+            const index = currentItem.findIndex(p => p.id === action.payload.id)
+            console.log('estoy en editToF')
+            currentItem[index].description = action.payload.description;
+            localStorage.setItem('favourite_photos', JSON.stringify(currentItem));
+            break;
+        }
+        default: {
+            return currentItem;
+        }
     }
 }
     
 
-const addToFavorite = {
-    type: 'addToFavorite'
-
-}
+//const addToFavorite = {
+//    type: 'addToFavorite'
+//
+//}
 //const removeFavorite = {
 //    type: 'removeFavorite'
 //}

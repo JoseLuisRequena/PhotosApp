@@ -1,9 +1,8 @@
 import React from 'react';
-//import {BuscarFotos} from './componentes/contenedorFotos';
-//import './App.css';
+import './App.css';
 import { Home } from './componentes/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { MyPhotos } from './componentes/MyPhotos';
+import MyPhotos from './componentes/MyPhotos';
 
 
 

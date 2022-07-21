@@ -92,6 +92,9 @@ export class Home extends React.Component{
         })
     }
     
+    if(this.query){
+        this.query = `https://api.unsplash.com/photos/random?client_id=${clientId}&count=20`
+    }
 
     
     render(){
