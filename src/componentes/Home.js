@@ -3,16 +3,16 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Image from './Image'
 import { ImageList } from "@mui/material";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const clientId = 'ZV3icJSp1F9um_6W0NhYACZFvPb-D79UwMLn97-TItU';
 const endpoint = 'https://api.unsplash.com/search/photos';
+const randomPhotos = `https://api.unsplash.com/photos/random?client_id=${clientId}&count=20`;
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -60,29 +60,30 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export class Home extends React.Component{
     constructor(props){
         super(props);
-        this.query = '';
         this.onQueryChange = this.onQueryChange.bind(this);
         this.search = this.search.bind(this);
 
         this.state = {
-            images: []
+            images: [],
+            query: ''
         }   
     }
 
-    search(){
-        fetch(`${endpoint}?query=${this.query}&client_id=${clientId}`)
-        .then(response => {
-            return response.json()
-        }).then(jsonResponse =>{
-            console.log(jsonResponse)
-            this.setState({
-                images: jsonResponse.results
-            })
-        })
+    componentDidMount(){
+        console.log('Hi did mount')
+        fetch(randomPhotos)
+        .then(response =>  response.json())
+        .then(jsonResponse => this.setState({images: jsonResponse}))
     }
 
+    search(){
+        fetch(`${endpoint}?query=${this.setState.query}&client_id=${clientId}`)
+        .then(response => response.json())
+        .then(jsonResponse => this.setState({images: jsonResponse.results}))
+    }
+    
     onQueryChange(e){
-        this.query = e.target.value;
+        this.setState.query = e.target.value;
         this.search();
     }
 
@@ -91,12 +92,7 @@ export class Home extends React.Component{
             return Image(image)
         })
     }
-    
-    if(this.query){
-        this.query = `https://api.unsplash.com/photos/random?client_id=${clientId}&count=20`
-    }
-
-    
+        
     render(){
         return(
             <>
@@ -105,7 +101,7 @@ export class Home extends React.Component{
                 <Toolbar>
                   <nav>
 
-                    <Link to='/my-photos'>My photos</Link>
+                    <Link to='/my-photos' style={{ textDecoration: 'none' }} >My photos</Link>
                     
                   </nav>
                   <Typography
@@ -122,9 +118,8 @@ export class Home extends React.Component{
                     </SearchIconWrapper>
                     <StyledInputBase
                         onChange={this.onQueryChange}
-                        
-                      placeholder="Search…"
-                      inputProps={{ 'aria-label': 'search' }}
+                        placeholder="Search…"
+                        inputProps={{ 'aria-label': 'search' }}
                     />
                   </Search>
                 </Toolbar>

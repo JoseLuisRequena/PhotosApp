@@ -20,78 +20,72 @@ const style = {
 };
 
 function ChildModal(props) {
-  const [open, setOpen] = useState(false);
-  const [description, setDescription] = useState('')
+    const [open, setOpen] = useState(false);
+    const [description, setDescription] = useState(props.currentImage.description)
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  
-  const onEdit = () => {
-    console.log(props.currentImage)
-  const action = {
-    type: 'editToFavorite',
-    payload: props.currentImage
-  }
-    reducer(action);
-  }
-  const handleClose = () => {
-    console.log('estoy en handleClose')
-    console.log(props.currentImage)
-    onEdit()
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
-    setOpen(false);
-  };
+    const onEdit = () => {
+        const action = {
+          type: 'editToFavorite',
+          payload: {id: props.currentImage.id, description}
+        }
+        reducer(action);
+    }
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-  return (
-    <React.Fragment>
-      <Button onClick={handleOpen}>edit description</Button>
-      <Modal
-        hideBackdrop
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-      >
-        <Box sx={{ ...style, width: 200 }}>
-          <p id="child-modal-description">
-            <textarea placeholder='Edit Description' value={description} onChange={ e => {setDescription(e.target.value)}}></textarea>
-          </p>
-          <Button onClick={handleClose}>save description</Button>
-        </Box>
-      </Modal>
-    </React.Fragment>
-  );
-}
+    return (
+      <React.Fragment>
+        <Button onClick={handleOpen}>edit description</Button>
+        <Modal
+            hideBackdrop
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="child-modal-title"
+            aria-describedby="child-modal-description"
+        >   
+            <Box sx={{ ...style, width: 200 }}>
+                <p id="child-modal-description">
+                  <textarea placeholder='Edit Description' value={description} onChange={ e => {setDescription(e.target.value)}}></textarea>
+                </p>
+                <Button onClick={onEdit}>save description</Button>
+                <Button onClick={handleClose}>cancel</Button>
+
+            </Box>
+        </Modal>
+      </React.Fragment>
+    );
+}   
 
 export default function NestedModal(props) {
-  
-  const handleClose = () => {
-    props.setOpen(false);
-  };
+    
+    const handleClose = () => {
+        props.setOpen(false);
+    };
 
-  return (
-    <div>
-      <Modal
-        open={props.open}
-        onClose={handleClose}
-        aria-labelledby="parent-modal-title"
-        aria-describedby="parent-modal-description"
-      >
-      
-        <Box sx={{ ...style, width: 400 }}>
-          <h2 id="parent-modal-title">DATA</h2>
-          <p id="parent-modal-description">
-          Likes: {props.currentImage.likes}</p>
-          <p>Width: {props.currentImage.width}</p>
-          <p>Height: {props.currentImage.height}</p>
-          <p>
-          Description: {props.currentImage.description}</p>
-          <ChildModal currentImage={props.currentImage}/>
-          <Button onClick={handleClose}>save</Button>
-        </Box>
-      </Modal>
-    </div>
-  );
+    return (
+        <div>
+            <Modal
+                open={props.open}
+                onClose={handleClose}
+                aria-labelledby="parent-modal-title"
+                aria-describedby="parent-modal-description"
+            >   
+                
+                <Box sx={{ ...style, width: 400 }}>
+                    <h2 id="parent-modal-title">DATA</h2>
+                    <p>Likes: {props.currentImage.likes}</p>
+                    <p>Width: {props.currentImage.width}</p>
+                    <p>Height: {props.currentImage.height}</p>
+                    <p>Description: {props.currentImage.description}</p>
+                    <ChildModal currentImage={props.currentImage}/>
+                    <Button onClick={handleClose}>save</Button>
+                </Box>
+            </Modal>
+        </div>
+    );
 }
-//transformarlo en un metodo??
