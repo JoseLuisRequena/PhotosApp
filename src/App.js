@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/my-photos" element={<MyPhotos/>} />
+          <Route path="my-photos" element={<MyPhotos/>} />
         </Routes>
       </BrowserRouter>
     </div>

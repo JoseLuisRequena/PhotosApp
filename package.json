@@ -1,5 +1,5 @@
 {
-  "homepage":"https://joseluisrequena.github.io/PhotosApp/",
+  "homepage": "https://joseluisrequena.github.io/PhotosApp/",
   "name": "fotos-app",
   "version": "0.1.0",
   "private": true,
@@ -22,8 +22,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build",
+    "server":"http-server ./build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "http-server": "^14.1.1"
   }
 }
