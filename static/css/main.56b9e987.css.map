@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.56b9e987.css","mappings":"AAAA,EACE,QAAQ,CACR,SACF,CACA,GACE,YACF","sources":["App.css"],"sourcesContent":["*{\n  margin:0;\n  padding: 0;\n}\nul{\n  padding: 10px;\n}\n"],"names":[],"sourceRoot":""}
