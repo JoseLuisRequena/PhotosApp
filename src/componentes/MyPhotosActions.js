@@ -1,14 +1,12 @@
 
-
-export function getPhotos() {
-    const fromStorage = localStorage.getItem('favourite_photos');
-    return fromStorage ? JSON.parse(fromStorage) : [];
-}
-
 export const reducer = (action) => {
-
-    let currentItems = JSON.parse(localStorage.getItem('favourite_photos'));
+    
+    let currentItems = [];
+    if (localStorage.getItem('favourite_photos')){
+        currentItems = JSON.parse(localStorage.getItem('favourite_photos'));
+    }
     const newCurrentItems = [...currentItems];
+
     switch (action.type){
         case 'addToFavorite':{
             const date = new Date();

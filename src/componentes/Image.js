@@ -4,7 +4,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { reducer } from "./MyPhotosActions";
 
 
-export default function Image (image){
+export default function Image(image){
 
     const onFavorite = () => {
         const action = {

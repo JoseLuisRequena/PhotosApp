@@ -31,7 +31,10 @@ const Search = styled('div')(({ theme }) => ({
 
 
 export default function MyPhotos() {
-    const images= JSON.parse(localStorage.getItem('favourite_photos'));
+    let images = [];
+    if (localStorage.getItem('favourite_photos')){
+        images = JSON.parse(localStorage.getItem('favourite_photos'));
+    }
     let Filter;
 
     const handleChange = (event) => {
