@@ -9,7 +9,7 @@ import MyPhotos from './componentes/MyPhotos';
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/my-photos" element={<MyPhotos/>} />
