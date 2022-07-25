@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/PhotosApp/static/css/main.56b9e987.css",
-    "main.js": "/PhotosApp/static/js/main.5f19bfa6.js",
+    "main.js": "/PhotosApp/static/js/main.044a28ed.js",
     "index.html": "/PhotosApp/index.html",
     "main.56b9e987.css.map": "/PhotosApp/static/css/main.56b9e987.css.map",
-    "main.5f19bfa6.js.map": "/PhotosApp/static/js/main.5f19bfa6.js.map"
+    "main.044a28ed.js.map": "/PhotosApp/static/js/main.044a28ed.js.map"
   },
   "entrypoints": [
     "static/css/main.56b9e987.css",
-    "static/js/main.5f19bfa6.js"
+    "static/js/main.044a28ed.js"
   ]
 }
