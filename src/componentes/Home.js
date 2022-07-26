@@ -100,7 +100,7 @@ export class Home extends React.Component{
                 <Toolbar>
                   <nav>
 
-                    <Link to='/my-photos' style={{ textDecoration: 'none' }} >My photos</Link>
+                    <Link to='/PhotosApp/my-photos' style={{ textDecoration: 'none' }} >My photos</Link>
                     
                   </nav>
                   <Typography
