@@ -10,7 +10,7 @@ function App() {
   return (
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/PhotosApp//my-photos" element={<MyPhotos/>} />
+          <Route path="/my-photos" element={<MyPhotos/>} />
         </Routes>
   )
 }
