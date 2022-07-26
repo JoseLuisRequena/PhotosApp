@@ -34,6 +34,7 @@ function ChildModal(props) {
         }
         reducer(action);
     }
+    
     const handleClose = () => {
         setOpen(false);
     };
