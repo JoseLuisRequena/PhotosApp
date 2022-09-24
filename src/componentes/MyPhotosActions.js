@@ -23,8 +23,10 @@ export const reducer = (action) => {
  
             if (!action.payload.id == currentItems.filter( state => state.id == action.payload.id ) && currentItems){
                 currentItems.push(data);
-            } else if (!currentItems){ currentItems = [data] } 
-                localStorage.setItem('favourite_photos', JSON.stringify(currentItems))
+            } else if (!currentItems){ currentItems = [data]} 
+            
+            localStorage.setItem('favourite_photos', JSON.stringify(currentItems))
+            
             break;
         }
 

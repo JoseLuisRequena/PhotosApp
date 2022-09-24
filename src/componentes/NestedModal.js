@@ -33,6 +33,7 @@ function ChildModal(props) {
           payload: {id: props.currentImage.id, description}
         }
         reducer(action);
+        handleClose();
     }
     
     const handleClose = () => {
@@ -53,7 +54,7 @@ function ChildModal(props) {
                 <p id="child-modal-description">
                   <textarea placeholder='Edit Description' value={description} onChange={ e => {setDescription(e.target.value)}}></textarea>
                 </p>
-                <Button onClick={onEdit}>save description</Button>
+                <Button onClick={onEdit}>save</Button>
                 <Button onClick={handleClose}>cancel</Button>
 
             </Box>
@@ -84,7 +85,7 @@ export default function NestedModal(props) {
                     <p>Height: {props.currentImage.height}</p>
                     <p>Description: {props.currentImage.description}</p>
                     <ChildModal currentImage={props.currentImage}/>
-                    <Button onClick={handleClose}>save</Button>
+                    <Button onClick={handleClose}>CLOSE</Button>
                 </Box>
             </Modal>
         </div>
