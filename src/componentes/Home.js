@@ -7,12 +7,12 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Image from './Image'
-import { ImageList } from "@mui/material";
+import { Button, ImageList } from "@mui/material";
 import { Link } from "react-router-dom";
+import { global } from "../../env";
 
-const clientId = 'ZV3icJSp1F9um_6W0NhYACZFvPb-D79UwMLn97-TItU';
 const endpoint = 'https://api.unsplash.com/search/photos';
-const randomPhotos = `https://api.unsplash.com/photos/random?client_id=${clientId}&count=20`;
+const randomPhotos = `https://api.unsplash.com/photos/random?client_id=${global.clientId}&count=20`;
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -76,7 +76,7 @@ export class Home extends React.Component{
     }
 
     search(){
-        fetch(`${endpoint}?query=${this.setState.query}&client_id=${clientId}`)
+        fetch(`${endpoint}?query=${this.setState.query}&client_id=${global.clientId}`)
         .then(response => response.json())
         .then(jsonResponse => this.setState({images: jsonResponse.results}))
     }
@@ -98,11 +98,9 @@ export class Home extends React.Component{
             <Box sx={{ flexGrow: 1 }}>
               <AppBar position="static">
                 <Toolbar>
-                  <nav>
-
-                    <Link to='/my-photos' style={{ textDecoration: 'none' }} >My photos</Link>
-                    
-                  </nav>
+                  <Button>
+                    <Link to='/my-photos' style={{ textDecoration: 'none', color:'white' }} >MY PHOTOS</Link>
+                  </Button>
                   <Typography
                     variant="h6"
                     noWrap
@@ -125,7 +123,11 @@ export class Home extends React.Component{
               </AppBar>
             </Box>
             
-            <Box sx={{ width: '100%', display:'flex'}}>
+            <Box sx={{ 
+              width: '95%', 
+              display:'flex', 
+              margin: "auto", 
+              marginTop: 1,}}>
                 <ImageList variant="masonry" cols={4}>
                     {this.images()}
                 </ImageList>

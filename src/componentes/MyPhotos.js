@@ -4,7 +4,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { ImageList } from "@mui/material";
+import { Button, ImageList } from "@mui/material";
 import { Link } from "react-router-dom";
 import FavouriteImage from './FavouriteImage'
 import InputLabel from '@mui/material/InputLabel';
@@ -53,9 +53,9 @@ export default function MyPhotos() {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-                <nav>
-                <Link to='/' style={{ textDecoration: 'none' }}>Home</Link>
-                </nav>
+                <Button >
+                <Link to='/' style={{ textDecoration: 'none', color:'white' }}>HOME</Link>
+                </Button >
                 <Typography
                   variant="h6"
                   noWrap
@@ -87,7 +87,11 @@ export default function MyPhotos() {
           </AppBar>
         </Box>
 
-        <Box sx={{ width: '100%', display:'flex'}}>
+        <Box sx={{ 
+              width: '95%', 
+              display:'flex', 
+              margin: "auto", 
+              marginTop: 1,}}>
             <ImageList variant="masonry" cols={4}>
                 {images.map(image => 
                 <FavouriteImage image={image} />
