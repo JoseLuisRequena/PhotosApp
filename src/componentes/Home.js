@@ -9,7 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Image from './Image'
 import { Button, ImageList } from "@mui/material";
 import { Link } from "react-router-dom";
-import { global } from "../../env";
+import { global } from "../env";
 
 const endpoint = 'https://api.unsplash.com/search/photos';
 const randomPhotos = `https://api.unsplash.com/photos/random?client_id=${global.clientId}&count=20`;
