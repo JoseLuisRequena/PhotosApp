@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/PhotosApp/static/css/main.56b9e987.css",
-    "main.js": "/PhotosApp/static/js/main.d9e36265.js",
-    "index.html": "/PhotosApp/index.html",
-    "main.56b9e987.css.map": "/PhotosApp/static/css/main.56b9e987.css.map",
-    "main.d9e36265.js.map": "/PhotosApp/static/js/main.d9e36265.js.map"
+    "main.css": "/Photos-App/static/css/main.56b9e987.css",
+    "main.js": "/Photos-App/static/js/main.d9e36265.js",
+    "index.html": "/Photos-App/index.html",
+    "main.56b9e987.css.map": "/Photos-App/static/css/main.56b9e987.css.map",
+    "main.d9e36265.js.map": "/Photos-App/static/js/main.d9e36265.js.map"
   },
   "entrypoints": [
     "static/css/main.56b9e987.css",
