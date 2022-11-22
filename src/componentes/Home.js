@@ -98,18 +98,18 @@ export class Home extends React.Component{
             <Box sx={{ flexGrow: 1 }}>
               <AppBar position="static">
                 <Toolbar>
-                  <Button>
-                    <Link to='/my-photos' style={{ textDecoration: 'none', color:'white' }} >MY PHOTOS</Link>
-                  </Button>
-                  <Typography
-                    variant="h6"
-                    noWrap
-                    component="div"
-                    sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                  >
+                    <Button>
+                        <Link to='/my-photos' style={{ textDecoration: 'none', color:'white' }} >MY PHOTOS</Link>
+                    </Button>
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                    >
 
-                  </Typography>
-                  <Search >
+                    </Typography>
+                    <Search >
                     <SearchIconWrapper >
                       <SearchIcon />
                     </SearchIconWrapper>
